@@ -12,19 +12,21 @@ import SignUp from "./pages/SignUp"
 
 import Navbar from "./components/Navbar"
 import PrivateRoute from "./components/PrivateRoute"
+import Category from "./pages/Category";
 
 
 function App() {
 
   return (
     <>
-      {process.env.REACT_APP_API_KEY}
       <Routes>
         <Route path="/" element={<Explore />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/profile" element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
         </Route>
+
+        <Route path="/category/:categoryName" element={<Category />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

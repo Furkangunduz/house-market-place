@@ -32,11 +32,11 @@ function Navbar() {
 					</li>
 					<li className='navbarListItem'>
 						<OfferIcon
-							fill={pathMatchRoute('/offer') ? '#2c2c2c' : '#8f8f8f'}
+							fill={pathMatchRoute('/offers') ? '#2c2c2c' : '#8f8f8f'}
 							width='36px'
 							height='36px'
 							onClick={() => {
-								navigate('/offer');
+								navigate('/offers');
 							}}
 						/>
 						<p>Offers</p>

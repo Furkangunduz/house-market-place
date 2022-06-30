@@ -24,7 +24,7 @@ function Category() {
 				const listingRef = collection(db, 'listing');
 				const q = query(
 					listingRef,
-					where('offer', '==', true),
+					where('type', '==', params.categoryName),
 					orderBy('timestamp', 'desc'),
 					limit(10)
 				);
@@ -50,7 +50,9 @@ function Category() {
 	return (
 		<div className='category'>
 			<header>
-				<p className='pageHeader'>Offers</p>
+				<p className='pageHeader'>
+					{params.categoryName == 'rent' ? 'Places for rent' : 'Places for sale'}
+				</p>
 			</header>
 			{listing && listing.length > 0 ? (
 				<>
@@ -70,7 +72,7 @@ function Category() {
 					</main>
 				</>
 			) : (
-				<p>There are no offers</p>
+				<p>No listing for {params.categoryName}</p>
 			)}
 		</div>
 	);
