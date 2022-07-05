@@ -13,9 +13,10 @@ import {
 import { toast } from 'react-toastify';
 import { db } from '../firebaseConfig';
 import ListingItem from '../components/ListingItem';
-
+import Spinner from '../components/Spinner';
 function Category() {
 	const [listing, setListing] = useState(null);
+	const [loading, setLoading] = useState(true);
 	const params = useParams();
 
 	useEffect(() => {
@@ -36,6 +37,7 @@ function Category() {
 					listing.push({ id: doc.id, data: doc.data() });
 				});
 				setListing(listing);
+				setLoading(false);
 			} catch (error) {
 				console.log(error);
 				toast.error('error');
@@ -54,7 +56,9 @@ function Category() {
 					{params.categoryName == 'rent' ? 'Places for rent' : 'Places for sale'}
 				</p>
 			</header>
-			{listing && listing.length > 0 ? (
+			{loading ? (
+				<Spinner />
+			) : listing && listing.length > 0 ? (
 				<>
 					<main>
 						<ul className='categoryListings'>
